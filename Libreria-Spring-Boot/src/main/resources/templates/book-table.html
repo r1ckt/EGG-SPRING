@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="template.fragments/head::head"></head>
+
+<body>
+<header th:replace="template.fragments/header::header"></header>
+<main>
+        <div class="container" >
+            <div class="row mt-5">
+                <div class="col">
+                    <div class="table-responsive">
+                        <table class="table table-hover table-bordered bg-light" >
+                            <thead>
+                            <tr class="table-dark">
+                                <th>ISBN</th>
+                                <th>Title</th>
+                                <th>Author</th>
+                                <th>Year</th>
+                                <th>Publisher</th>
+                                <th>Copies</th>
+                                <th>Borrowed Copies</th>
+                                <th>Remained Copies</th>
+
+                                <th>Update</th>
+                                <th>Delete</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr th:each="book : ${books}">
+                                <td th:text="${book.isbn}"></td>
+                                <td th:text="${book.name}"></td>
+                                <td th:text="${book.author.name}"></td>
+                                <td th:text="${book.year}"></td>
+                                <td th:text="${book.publisher.name}"></td>
+                                <td th:text="${book.copies}"></td>
+                                <td th:text="${book.borrowedCopies}"></td>
+                                <td th:text="${book.remainedCopies}"></td>
+
+                                <td><a class="btn btn-warning" th:href="@{/books/book-form/__${book.id}__}">Update</a></td>
+                                <td>
+                                    <form  th:action="@{/books/delete/__${book.id}__}" method="POST">
+                                        <button type="submit" class="btn btn-danger">Delete</button>
+                                    </form>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+</main>
+<script th:src="@{/js/bootstrap.bundle.min.js}"></script>
+</body>
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <head th:replace="template.fragments/head::head"></head>
+    <title>Title</title>
+</head>
+<body>
+<header th:replace="template.fragments/header::header"></header>
+<main >
+    <div class="container">
+        <div class="row mt-5">
+           <div class="col-6">
+               <form th:action="@{/authors/__${action}__}" th:object="${author}" method="POST">
+                   <input type="hidden" th:field="*{id}">
+
+                   <div class=" mb-3" >
+                       <label for="name" class="form-label">Author</label>
+                       <input type="text" class="form-control" th:field="*{name}" id="name"
+                              placeholder="Charles Bukowski">
+                       <div class="text-danger mt-b" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></div>
+
+                   </div>
+                   <button type="submit" class="btn btn-primary"
+                           th:text="${action=='create'?'Sign up':'Update'}"></button>
+               </form>
+           </div>
+        </div>
+    </div>
+</main>
+<footer th:replace="template.fragments/footer::footer"></footer>
+
+
+
+
+<script th:src="@{/js/bootstrap.bundle.min.js}"></script>
+</body>
+</html>

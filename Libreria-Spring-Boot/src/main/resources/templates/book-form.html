@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="template.fragments/head::head"></head>
+
+<body>
+<header th:replace="template.fragments/header::header"></header>
+<main>
+    <div class="container">
+        <div class="row ">
+            <div class="col-6">
+                <form th:action="@{/books/__${action}__}" th:object="${book}" method="POST">
+                    <input type="hidden" th:field="*{id}">
+
+                    <div class=" mb-3">
+                        <label for="isbn" class="form-label">ISBN</label>
+                        <input type="text" class="form-control" th:field="*{isbn}" id="isbn"
+                               placeholder="ISBN">
+                        <div class="text-danger mt-b" th:if="${#fields.hasErrors('isbn')}" th:errors="*{isbn}"></div>
+
+                    </div>
+
+                    <div class="  mb-3">
+                        <label for="name" class="form-label">Title</label>
+                        <input type="text" class="form-control" th:field="*{name}" id="name"
+                               placeholder="Women"
+                        >
+                        <div class="text-danger mt-b" th:if="${#fields.hasErrors('name')}"
+                             th:errors="*{name}"></div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="year" class="form-label">Year</label>
+                        <input type="text" class="form-control" th:field="*{year}" id="year"
+                               placeholder="2002"
+                        >
+                        <div class="text-danger mt-b" th:if="${#fields.hasErrors('year')}" th:errors="*{year}"></div>
+                    </div>
+
+                    <div class=" mb-3">
+                        <label for="author">Author</label>
+                        <select th:field="*{author}" id="author" class="form-select" aria-label="Select Author" required>
+                            <option selected value="">Select Author</option>
+                            <option th:each="authors : ${author}" th:text="${authors.name}"
+                                    th:value="${authors.id}"></option>
+                        </select>
+
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="author">Publisher</label>
+                        <select th:field="*{publisher}" id="publisher" class="form-select" aria-label="Select Publisher"
+                                required>
+                            <option selected value="">Select Publisher</option>
+                            <option th:each="publishers : ${publisher}" th:text="${publishers.name}"
+                                    th:value="${publishers.id}"></option>
+                        </select>
+
+                    </div>
+                    <div class="mb-3">
+                        <label for="copies" class="form-label">N° of copies:</label>
+                        <input type="text" class="form-control" th:field="*{copies}" id="copies"
+                               placeholder=""
+                        >
+                        <div class="text-danger mt-b" th:if="${#fields.hasErrors('copies')}"
+                             th:errors="*{copies}"></div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="borrowedCopies" class="form-label">N° of borrowed copies:</label>
+                        <input type="text" class="form-control" th:field="*{borrowedCopies}" id="borrowedCopies"
+                               placeholder=""
+                        >
+                        <div class="text-danger mt-b" th:if="${#fields.hasErrors('borrowedCopies')}"
+                             th:errors="*{borrowedCopies}"></div>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary"
+                            th:text="${action=='create'?'Add Book':'Update'}"></button>
+                </form>
+            </div>
+        </div>
+    </div>
+</main>
+
+<footer th:replace="template.fragments/footer::footer"></footer>
+
+<script th:src="@{/js/bootstrap.bundle.min.js}"></script>
+</body>
+</html>

@@ -1,0 +1,42 @@
+<header th:fragment="header">
+    <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark bg-dark border-bottom box-shadow mb-3 ">
+        <div class="container justify-content-start  " >
+            <a th:href="@{/}" class="navbar-brand " >
+                <i class="bi bi-book h1"></i>
+            </a>
+
+            <button class="navbar-toggler"
+                    type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#menu"
+                    aria-aria-controls="menu"
+                    aria-expanded="false"
+                    aria-label="Show / Hide Menu"
+            >
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="btn-group ms-3">
+                <button class="btn btn-secondary btn-lg dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    Show
+                </button>
+                <ul class="dropdown-menu">
+                    <li class="nav-item"><a class="nav-link" th:href="@{/books}">Books</a></li>
+                    <li class="nav-item"><a class="nav-link" th:href="@{/authors}">Authors</a></li>
+                    <li class="nav-item"><a class="nav-link" th:href="@{/publishers}">Publishers</a></li>
+                </ul>
+            </div>
+            <div class="btn-group ms-4">
+                <button class="btn btn-secondary btn-lg dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    Create
+                </button>
+                <ul class="dropdown-menu">
+                    <li class="nav-item"><a class="nav-link" th:href="@{/books/book-form}">Books</a></li>
+                    <li class="nav-item"><a class="nav-link" th:href="@{/authors/author-form}">Authors</a></li>
+                    <li class="nav-item"><a class="nav-link" th:href="@{/publishers/publisher-form}">Publishers</a></li>
+                </ul>
+            </div>
+    </nav>
+</header>
+
+

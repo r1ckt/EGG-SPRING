@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<head th:replace="template.fragments/head::head"></head>
+
+<body>
+<header th:replace="template.fragments/header::header"></header>
+<main>
+
+    <div class="container" >
+        <div class="row mt-5" >
+            <div class="col">
+                <div class="table-responsive">
+                    <table class="table table-hover table-bordered bg-light">
+                        <thead>
+                        <tr class="table-dark">
+                            <th>Author Name</th>
+                            <th>Update</th>
+                            <th>Delete</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <!--for each author in authors-->
+                        <tr th:each="author : ${authors}">
+                            <td th:text="${author.name}"></td>
+                            <td><a class="btn btn-warning" th:href="@{/authors/author-form/__${author.id}__}">Update</a></td>
+                            <td>
+                                <form  th:action="@{/authors/delete/__${author.id}__}" method="POST">
+                                    <button type="submit" class="btn btn-danger">Delete</button>
+                                </form>
+                            </td>
+                        </tr>
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+<footer th:replace="template.fragments/footer::footer"></footer>
+
+<script th:src="@{/js/bootstrap.bundle.min.js}"></script>
+</body>
+</html></html>
